@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="aa6b208f-9a5d-4626-a3cc-d172c9d778d0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     confproveedor.`ID` AS confproveedor_ID,
+     confproveedor.`STRNOMBRE` AS confproveedor_STRNOMBRE,
+     confproveedor.`STRTELEFONOOFICINA` AS confproveedor_STRTELEFONOOFICINA,
+     confproveedor.`STRTELEFONOCELULAR` AS confproveedor_STRTELEFONOCELULAR,
+     confproveedor.`STRRAZONSOCIAL` AS confproveedor_STRRAZONSOCIAL,
+     conftipodistribuidor.`STRVALOR` AS conftipodistribuidor_STRVALOR
+FROM
+     `conftipodistribuidor` conftipodistribuidor INNER JOIN `confproveedor` confproveedor ON conftipodistribuidor.`ID` = confproveedor.`IDCONFDISTRIBUIDOR`]]>
+	</queryString>
+	<field name="confproveedor_ID" class="java.lang.Integer"/>
+	<field name="confproveedor_STRNOMBRE" class="java.lang.String"/>
+	<field name="confproveedor_STRTELEFONOOFICINA" class="java.lang.String"/>
+	<field name="confproveedor_STRTELEFONOCELULAR" class="java.lang.String"/>
+	<field name="confproveedor_STRRAZONSOCIAL" class="java.lang.String"/>
+	<field name="conftipodistribuidor_STRVALOR" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement x="-20" y="0" width="595" height="64" uuid="ed9ef10f-6197-4239-b6af-b9168e4dd7a8"/>
+				<imageExpression><![CDATA["wood.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="0" y="5" width="263" height="33" uuid="2ce762c5-fa8e-4e9b-b58e-8697234200ed"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Distribuidor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="63" y="39" width="200" height="22" forecolor="#FFFFFF" uuid="06925fac-1e0f-4cce-b60e-7d790c0e1fc6"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Persianas & Cortinas]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="50">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="37" width="555" height="1" uuid="b32ec158-e05f-4094-8fc4-bc3660fbc666"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="208" splitType="Stretch">
+			<textField>
+				<reportElement style="Detail" x="116" y="15" width="198" height="15" uuid="f8a4be09-56f6-451c-a82e-3c9679cff4e0"/>
+				<textFieldExpression><![CDATA[$F{confproveedor_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="116" y="31" width="198" height="15" uuid="0fe8dc04-d38a-4307-837c-aaefe5502f10"/>
+				<textFieldExpression><![CDATA[$F{confproveedor_STRNOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="116" y="46" width="198" height="15" uuid="1a9ed65d-ca67-4029-928b-419cb9c202c2"/>
+				<textFieldExpression><![CDATA[$F{confproveedor_STRTELEFONOOFICINA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="116" y="61" width="198" height="15" uuid="b9b921b6-fa8d-49f5-a92f-57b2076c11e8"/>
+				<textFieldExpression><![CDATA[$F{confproveedor_STRTELEFONOCELULAR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="116" y="76" width="198" height="15" uuid="b6a80c59-7a4b-4d4b-b0be-4c5a716ecb0e"/>
+				<textFieldExpression><![CDATA[$F{confproveedor_STRRAZONSOCIAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="116" y="91" width="198" height="15" uuid="e75f6dd0-3dae-4db5-849b-004bef743696"/>
+				<textFieldExpression><![CDATA[$F{conftipodistribuidor_STRVALOR}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="0" y="16" width="116" height="15" uuid="2c07d258-b474-4eea-9d14-aa62e6e3f762"/>
+				<text><![CDATA[Codigo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="0" y="31" width="116" height="15" uuid="ca5bd1a1-5326-484a-a646-c310a3c6b5e3"/>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="0" y="46" width="116" height="15" uuid="c182dae8-8f36-4bab-b146-ad06184ce2b4"/>
+				<text><![CDATA[Telefono Oficina:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="0" y="61" width="116" height="15" uuid="25a0e8b3-1aab-4543-a9dd-85fd22737c58"/>
+				<text><![CDATA[Telefono Celular:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="0" y="76" width="116" height="15" uuid="86a16bfe-ef57-4102-a918-a5253531954c"/>
+				<text><![CDATA[Razon Social:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="0" y="91" width="116" height="15" uuid="5e62c965-1322-4b6f-8924-29bd465a5013"/>
+				<text><![CDATA[Tipo Distribuidor:]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="0" y="130" width="553" height="72" uuid="b86aa6a4-1812-4ded-9ed8-57c45e20355f"/>
+				<subreportParameter name="Idconfproveedor">
+					<subreportParameterExpression><![CDATA[$F{confproveedor_ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\Dies\\Desktop\\mx.com.DiegoA\\src\\mx\\com\\diegoA\\Reportes\\Reportes\\SubReporteDistribuidor.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="d5e96f09-a18c-4150-89b7-571231d71d12"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="d87784bf-52f2-4bef-8813-4a0d9841260d"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="65dc0a7b-e193-4121-8a07-542ce33e5f8b"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

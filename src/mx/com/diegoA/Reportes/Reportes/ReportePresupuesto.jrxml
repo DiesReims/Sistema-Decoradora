@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ca10c891-c5d2-4b65-bfe1-5fba13e4cd2d">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     venpresupuesto.`ID` AS venpresupuesto_ID,
+     venpresupuesto.`strvalor` AS venpresupuesto_strvalor,
+     confcliente.`STRNOMBRE` AS confcliente_STRNOMBRE
+FROM
+     `confcliente` confcliente INNER JOIN `venpresupuesto` venpresupuesto ON confcliente.`ID` = venpresupuesto.`IDCONFCLIENTE`]]>
+	</queryString>
+	<field name="venpresupuesto_ID" class="java.lang.Integer"/>
+	<field name="venpresupuesto_strvalor" class="java.lang.String"/>
+	<field name="confcliente_STRNOMBRE" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement x="-20" y="0" width="595" height="64" uuid="bf77735b-6998-4d32-9e0b-52af0abe935a"/>
+				<imageExpression><![CDATA["wood.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="0" y="5" width="263" height="33" uuid="1db864c3-7ac6-4679-9403-df63484b5fdb"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Presupuestos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="63" y="39" width="200" height="22" forecolor="#FFFFFF" uuid="9d82b4cb-1dd2-4c61-a3a5-0dc1a60b516c"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Persianas & Cortinas]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" x="0" y="19" width="185" height="15" uuid="a31d8496-5aa2-41cd-a8ac-b4b0343d892d"/>
+				<text><![CDATA[Folio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="185" y="19" width="185" height="15" uuid="beed1e66-1f4a-4836-9ef3-5f5994935813"/>
+				<text><![CDATA[Descripción breve]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="370" y="19" width="185" height="15" uuid="cffee50b-dffe-4b09-b515-714466a40e77"/>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="172" splitType="Stretch">
+			<textField>
+				<reportElement style="Detail" x="0" y="0" width="185" height="15" uuid="9f16a4ca-6805-41a1-8fa3-837e6c255434"/>
+				<textFieldExpression><![CDATA[$F{venpresupuesto_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="185" y="0" width="185" height="15" uuid="1fce412c-5431-4d96-bd82-29fed2c85f19"/>
+				<textFieldExpression><![CDATA[$F{venpresupuesto_strvalor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="370" y="0" width="185" height="15" uuid="cc436265-b6a5-4bbb-8183-757e1b04c494"/>
+				<textFieldExpression><![CDATA[$F{confcliente_STRNOMBRE}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="0" y="37" width="553" height="100" uuid="40f14e3b-eca7-4f15-957e-9e9d0aa1f074"/>
+				<subreportParameter name="idVenPresupuesto">
+					<subreportParameterExpression><![CDATA[$F{venpresupuesto_ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\Dies\\Desktop\\mx.com.DiegoA\\src\\mx\\com\\diegoA\\Reportes\\Reportes\\SubReportePresupuesto.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="20" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="77309162-4d89-4f47-bec2-faf2765fe4bb"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="966b0477-5325-4605-9ee1-827d26219719"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="1bfadb63-ddc8-401a-ae4a-02eb6bc233a6"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

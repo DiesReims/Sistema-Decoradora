@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d6059f0f-1f7e-4a11-8f80-c4d8244b5871">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     confcliente.`STRNOMBRE` AS confcliente_STRNOMBRE,
+     confcliente.`STRTELEFONOCASA` AS confcliente_STRTELEFONOCASA,
+     confcliente.`STRTELEFONOCELULAR` AS confcliente_STRTELEFONOCELULAR,
+     confcliente.`ID` AS confcliente_ID
+FROM
+     `confcliente` confcliente]]>
+	</queryString>
+	<field name="confcliente_STRNOMBRE" class="java.lang.String"/>
+	<field name="confcliente_STRTELEFONOCASA" class="java.lang.String"/>
+	<field name="confcliente_STRTELEFONOCELULAR" class="java.lang.String"/>
+	<field name="confcliente_ID" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement x="-20" y="0" width="595" height="64" uuid="6a94174a-2b34-437b-8071-4fe3e4f8aac8"/>
+				<imageExpression><![CDATA["wood.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="0" y="5" width="263" height="33" uuid="23e90cbf-c799-4a34-85b0-d6d01f706484"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="63" y="39" width="200" height="22" forecolor="#FFFFFF" uuid="c5d2883f-7114-4200-b38a-30817804d30e"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Persianas & Cortinas]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="37" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="aa5ce9a8-a5b1-49bc-8412-130f9aace293"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="151">
+			<staticText>
+				<reportElement style="Column header" x="0" y="49" width="138" height="15" uuid="8ec66c80-7043-4972-a86c-639b508e11fb"/>
+				<text><![CDATA[telefono Celular:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="0" y="34" width="138" height="15" uuid="a0678354-8575-48d7-acb1-9100d514ac02"/>
+				<text><![CDATA[Telefono Casa:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="0" y="19" width="138" height="15" uuid="aa1af248-af6e-4fec-a99c-e2cd34cac5d4"/>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="138" y="49" width="138" height="15" forecolor="#333333" uuid="32c8fe4f-51dd-4dc0-a98b-feb5eb9dcb70"/>
+				<textFieldExpression><![CDATA[$F{confcliente_STRTELEFONOCELULAR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="34" width="138" height="15" forecolor="#333333" uuid="a5710056-9198-4a2c-a165-a549447d633b"/>
+				<textFieldExpression><![CDATA[$F{confcliente_STRTELEFONOCASA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="138" y="19" width="138" height="15" forecolor="#333333" uuid="760aa064-497c-4d24-b95b-e45e369bd8c8"/>
+				<textFieldExpression><![CDATA[$F{confcliente_STRNOMBRE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="0" y="4" width="138" height="15" uuid="5b914ba4-8f2d-47f3-9d22-ac24f1966cae"/>
+				<text><![CDATA[Codigo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="138" y="4" width="138" height="15" forecolor="#333333" uuid="2f3a2ad3-ae09-47e2-8dd6-348d5a674691"/>
+				<textFieldExpression><![CDATA[$F{confcliente_ID}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="0" y="83" width="553" height="67" uuid="933dca8e-4230-48c8-9a76-eece2a3f4561"/>
+				<subreportParameter name="Idconfcliente">
+					<subreportParameterExpression><![CDATA[$F{confcliente_ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\Dies\\Desktop\\mx.com.DiegoA\\src\\mx\\com\\diegoA\\Reportes\\Reportes\\SubReportCliente.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="7104c657-b10b-4be4-95a8-0c173e18ca2f"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="e788e9b1-ebbb-45b0-b8ef-dc4201bcea31"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="35931a81-6fc0-422e-bc91-88fbb0bbdd68"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

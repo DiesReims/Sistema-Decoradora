@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="555" pageHeight="802" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="8b627bd0-c9ae-4998-a6c9-d7e2816a005d">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="Idconfcliente" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT
+     confdireccion.`strvalor` AS confdireccion_strvalor,
+     confdireccion.`strColonia` AS confdireccion_strColonia,
+     confestados.`nombre` AS confestados_nombre,
+     confmunicipios.`nombre` AS confmunicipios_nombre
+FROM
+     `confestados` confestados INNER JOIN `confdireccion` confdireccion ON confestados.`id` = confdireccion.`idconfestado`
+     INNER JOIN `confmunicipios` confmunicipios ON confestados.`id` = confmunicipios.`idestado`
+     AND confmunicipios.`id` = confdireccion.`idconfmunicipio` AND idconfcliente = $P{Idconfcliente}]]>
+	</queryString>
+	<field name="confdireccion_strvalor" class="java.lang.String"/>
+	<field name="confdireccion_strColonia" class="java.lang.String"/>
+	<field name="confestados_nombre" class="java.lang.String"/>
+	<field name="confmunicipios_nombre" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="33" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="33" forecolor="#333333" uuid="3ca2b957-fa0c-415a-bae3-f4c23ff963be"/>
+				<textElement textAlignment="Center">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Direcciones]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="22" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="295" y="0" width="160" height="20" forecolor="#333333" uuid="7666fa84-13a7-4106-9567-cfaf7518a169"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Comunidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="138" y="0" width="157" height="20" forecolor="#333333" uuid="4f0b38b5-7572-4ea9-b7de-845aff3f68aa"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Colonia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="0" width="100" height="20" forecolor="#333333" uuid="6ca5c38e-3653-4aa3-b7d5-c83d47db0ac0"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="138" height="20" forecolor="#333333" uuid="62bf7ec3-1c1f-459f-917e-2aa0948cf376"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Calle]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="43" splitType="Stretch">
+			<textField>
+				<reportElement x="295" y="0" width="160" height="20" forecolor="#333333" uuid="b9c5a287-fc37-4add-9efd-8be2f5dd7754"/>
+				<textFieldExpression><![CDATA[$F{confdireccion_strvalor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="0" width="157" height="20" forecolor="#333333" uuid="eaa3dbae-e1a6-4241-99e8-f7c8dc0ad320"/>
+				<textFieldExpression><![CDATA[$F{confdireccion_strColonia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="0" width="100" height="20" forecolor="#333333" uuid="f7348721-9daf-4b4d-afb0-bc88105b0ca3"/>
+				<textFieldExpression><![CDATA[$F{confestados_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="138" height="20" forecolor="#333333" uuid="ed61e7f2-7c9f-48dc-9d14-68b065aca157"/>
+				<textFieldExpression><![CDATA[$F{confmunicipios_nombre}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="11" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="9" splitType="Stretch"/>
+	</summary>
+</jasperReport>

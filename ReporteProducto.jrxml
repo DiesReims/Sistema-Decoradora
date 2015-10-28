@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1386bc12-9348-481d-ae3d-fefc8c763edf">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     confproducto.`STRVALOR` AS confproducto_STRVALOR,
+     confproducto.`CURRPRECIO` AS confproducto_CURRPRECIO,
+     conftipoproducto.`STRVALOR` AS conftipoproducto_STRVALOR,
+     confmarca.`STRVALOR` AS confmarca_STRVALOR,
+     confcoleccion.`STRVALOR` AS confcoleccion_STRVALOR,
+     confcolor.`STRVALOR` AS confcolor_STRVALOR,
+     confmaterial.`STRVALOR` AS confmaterial_STRVALOR
+FROM
+     `conftipoproducto` conftipoproducto INNER JOIN `confproducto` confproducto ON conftipoproducto.`ID` = confproducto.`IDCONFTIPOPRODUCTO`
+     INNER JOIN `confmarca` confmarca ON confproducto.`IDCONFMARCA` = confmarca.`ID`
+     INNER JOIN `confcoleccion` confcoleccion ON confproducto.`IDCONFCOLECCION` = confcoleccion.`ID`
+     INNER JOIN `confcolor` confcolor ON confproducto.`IDCONFCOLOR` = confcolor.`ID`
+     INNER JOIN `confmaterial` confmaterial ON confproducto.`IDCONFMATERIAL` = confmaterial.`ID`
+     AND confmarca.`ID` = confcoleccion.`IDCONFMARCA`]]>
+	</queryString>
+	<field name="confproducto_STRVALOR" class="java.lang.String"/>
+	<field name="confproducto_CURRPRECIO" class="java.lang.Double"/>
+	<field name="conftipoproducto_STRVALOR" class="java.lang.String"/>
+	<field name="confmarca_STRVALOR" class="java.lang.String"/>
+	<field name="confcoleccion_STRVALOR" class="java.lang.String"/>
+	<field name="confcolor_STRVALOR" class="java.lang.String"/>
+	<field name="confmaterial_STRVALOR" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement x="-20" y="0" width="595" height="64" uuid="aa9ab6d1-6226-49e9-85c2-45e29858e7a9"/>
+				<imageExpression><![CDATA["wood.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="0" y="5" width="263" height="33" uuid="517a078a-0657-4367-8049-75f8960952a2"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Producto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="63" y="39" width="200" height="22" forecolor="#FFFFFF" uuid="a2d6b293-dd6d-453c-b414-ed323697d5de"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Persianas & Cortinas]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="146" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="79" height="15" uuid="b6a46ed1-b808-41b7-9160-b35a7a31e4d5"/>
+				<text><![CDATA[Producto]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="79" y="0" width="184" height="15" uuid="5d8cb07c-97f7-47ea-8a27-6b2410db528c"/>
+				<textFieldExpression><![CDATA[$F{confproducto_STRVALOR}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="0" y="45" width="79" height="15" uuid="327316f0-9c1d-4fbd-8c59-17ae4ce227fc"/>
+				<text><![CDATA[Material]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="0" y="15" width="79" height="15" uuid="42f55764-2857-4f8c-97c8-232f8b86d982"/>
+				<text><![CDATA[Precio]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="79" y="15" width="184" height="15" uuid="bc4e03bb-1b37-4bbb-8621-1b1bff8a1e7e"/>
+				<textFieldExpression><![CDATA[$F{confproducto_CURRPRECIO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="0" y="30" width="79" height="15" uuid="3a56317e-4747-4bd5-9ebb-a6a03bfd2ec9"/>
+				<text><![CDATA[Tipo Producto]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="79" y="30" width="184" height="15" uuid="cc0131aa-dc60-4df5-bf9b-1c2aad46d4a8"/>
+				<textFieldExpression><![CDATA[$F{conftipoproducto_STRVALOR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="79" y="45" width="184" height="15" uuid="39638edb-550d-4de2-9066-ab3de165ca6b"/>
+				<textFieldExpression><![CDATA[$F{confmaterial_STRVALOR}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="0" y="60" width="79" height="15" uuid="37ce5169-0f6a-413d-8ecb-41d8640735bd"/>
+				<text><![CDATA[Color]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="79" y="60" width="184" height="15" uuid="da56aab4-be6e-4f26-af3b-cbb469a965f7"/>
+				<textFieldExpression><![CDATA[$F{confcolor_STRVALOR}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="0" y="75" width="79" height="15" uuid="95ed4a2c-2316-4b90-bd4f-4853deb69c69"/>
+				<text><![CDATA[Marca]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="79" y="75" width="184" height="15" uuid="65fad74a-1b47-4a4a-a81a-cdc19dd9bc28"/>
+				<textFieldExpression><![CDATA[$F{confmarca_STRVALOR}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Column header" x="0" y="90" width="79" height="15" uuid="727b5094-a93f-4ebc-8e61-233783810baf"/>
+				<text><![CDATA[Coleccion]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Detail" x="79" y="90" width="184" height="15" uuid="0eff41d8-29ef-4830-bec5-0686f24869a6"/>
+				<textFieldExpression><![CDATA[$F{confcoleccion_STRVALOR}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="27" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="ba73199f-a000-483a-84ea-8aae65a59b92"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="6b329505-5fa1-4c92-84b1-0216191ef8e7"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="e5d17d07-a365-4a2a-9a59-f237bb2dfd89"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="f55c87ab-eca6-48e8-9ce2-a4e2f1fa5094"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
